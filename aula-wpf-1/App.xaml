@@ -4,6 +4,97 @@
              xmlns:local="clr-namespace:aula_wpf_1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!--#region COLORS -->
+        <!-- APP -->
+        <SolidColorBrush x:Key="Theme_Main_Color"   Color="#6330E8"/>
+        <SolidColorBrush x:Key="Theme_Bg_Color"     Color="#191921"/>
+        <SolidColorBrush x:Key="Theme_Empty_Color"  Color="#2C2C46"/>
+        <SolidColorBrush x:Key="Theme_Border_Color" Color="#463279"/>
+        <SolidColorBrush x:Key="Theme_Select_Color" Color="#FF703FEF"/>
+        <SolidColorBrush x:Key="Theme_Item_Select"  Color="#7944FF"/>
+        <SolidColorBrush x:Key="Theme_No_Color"  Color="#00000000"/>
+
+        <!-- TEXT -->
+        <SolidColorBrush x:Key="Text_Main"        Color="#FFF"/>
+        <SolidColorBrush x:Key="Text_Description" Color="#543E8C"/>
+        <SolidColorBrush x:Key="Text_Placeholder" Color="#7E64C1"/>
+        <SolidColorBrush x:Key="Text_Marked"      Color="#2C2C46"/>
+        <!--#endregion COLORS -->
+        
+        <!--#region FONT -->
+        <!-- NORMAL -->
+        <FontFamily x:Key="Gotham-Book">pack://application:,,,/Resourses/Fonts/Gotham-Font/Normal/GothamBook.ttf#Gotham</FontFamily>
+        <FontFamily x:Key="Gotham-Light">pack://application:,,,/Resourses/Fonts/Gotham-Font/Normal/GothamLight.ttf#Gotham</FontFamily>
+        <FontFamily x:Key="Gotham-Medium">pack://application:,,,/Resourses/Fonts/Gotham-Font/Normal/GothamMedium.ttf#Gotham</FontFamily>
+        <FontFamily x:Key="Gotham-Bold">pack://application:,,,/Resourses/Fonts/Gotham-Font/Normal/GothamBold.ttf#Gotham</FontFamily>
+        
+        <!-- ITALIC -->
+        <FontFamily x:Key="Gotham-Book-Italic">pack://application:,,,/Resourses/Fonts/Gotham-Font/Italic/GothamBookItalic.ttf#Gotham</FontFamily>
+        <FontFamily x:Key="Gotham-Light-Italic">pack://application:,,,/Resourses/Fonts/Gotham-Font/Italic/GothamLightItalic.ttf#Gotham</FontFamily>
+        <FontFamily x:Key="Gotham-Medium-Italic">pack://application:,,,/Resourses/Fonts/Gotham-Font/Italic/GothamMediumItalic.ttf#Gotham</FontFamily>
+        <FontFamily x:Key="Gotham-Bold-Italic">pack://application:,,,/Resourses/Fonts/Gotham-Font/Italic/GothamBoldItalic.ttf#Gotham</FontFamily>
+        <!--#endregion FONT -->
+
+        <!-- # COMPONENTS # -->
+        
+        <!-- TEXTBOX -->
+        <Style x:Key="UI-TextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background"      Value="{DynamicResource Theme_No_Color}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Theme_Border_Color}"/>
+            <Setter Property="Padding" Value="6 3"/>
+            <Setter Property="Cursor" Value="IBeam"/>
+            <Setter Property="Foreground" Value="{DynamicResource Text_Main}"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="AllowDrop" Value="True"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border 
+                            x:Name="Text_Label"
+                            Background="{DynamicResource Theme_Bg_Color}"
+                            CornerRadius="5"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True"
+                        >
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <ScrollViewer 
+                                    x:Name="PART_ContentHost"
+                                    Focusable="False"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden"
+                                />
+                                <Label 
+                                    x:Name="InputLabel"
+                                    Content="{TemplateBinding Tag}"
+                                    FontWeight="{TemplateBinding FontWeight}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Visibility="Collapsed"
+                                    Foreground="White"
+                                    Padding="{TemplateBinding Padding}"
+                                    FontFamily="{StaticResource Gotham-Light}"
+                                />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter 
+                                    Property="Visibility"
+                                    TargetName="InputLabel"
+                                    Value="Visible"
+                                />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
